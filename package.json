@@ -7,7 +7,9 @@
   "author": "Brian Emilius <be@rts.dk), Güner Yildirim <gy@rts.dk>",
   "license": "MIT",
   "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
     "gulp-inject": "^4.2.0",
-    "browser-sync": "^2.18.8"
+    "gulp-pug": "^3.3.0"
   }
 }
