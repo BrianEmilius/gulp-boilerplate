@@ -1,0 +1,9 @@
+{
+  "name": "gulp-boilerplate",
+  "version": "0.0.0",
+  "description": "Super Awesome Gulp Boilerplate With Everything You Will Ever Need. Ever!",
+  "main": "index.js",
+  "repository": "http://github.com/BrianEmilius/gulp-boilerplate",
+  "author": "Brian Emilius <be@rts.dk), Güner Yildirim <gy@rts.dk>",
+  "license": "MIT"
+}
