@@ -5,5 +5,8 @@
   "main": "index.js",
   "repository": "http://github.com/BrianEmilius/gulp-boilerplate",
   "author": "Brian Emilius <be@rts.dk), Güner Yildirim <gy@rts.dk>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "gulp-inject": "^4.2.0"
+  }
 }
