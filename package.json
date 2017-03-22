@@ -1,15 +1,20 @@
 {
-  "name": "gulp-boilerplate",
-  "version": "0.0.0",
-  "description": "Super Awesome Gulp Boilerplate With Everything You Will Ever Need. Ever!",
-  "main": "index.js",
-  "repository": "http://github.com/BrianEmilius/gulp-boilerplate",
-  "author": "Brian Emilius <be@rts.dk), Güner Yildirim <gy@rts.dk>",
-  "license": "MIT",
-  "devDependencies": {
-    "browser-sync": "^2.18.8",
-    "gulp": "^3.9.1",
-    "gulp-inject": "^4.2.0",
-    "gulp-pug": "^3.3.0"
-  }
+	"name": "gulp-boilerplate",
+	"version": "0.0.0",
+	"description": "Super Awesome Gulp Boilerplate With Everything You Will Ever Need. Ever!",
+	"repository": "http://github.com/BrianEmilius/gulp-boilerplate",
+	"author": "Brian Emilius <be@rts.dk), Güner Yildirim <gy@rts.dk>",
+	"license": "MIT",
+	"devDependencies": {
+		"angular": "^1.6.3",
+		"bootstrap": "^3.3.7",
+		"browser-sync": "^2.18.8",
+		"gulp": "^3.9.1",
+		"gulp-inject": "^4.2.0",
+		"gulp-prompt": "^0.2.0",
+		"gulp-pug": "^3.3.0",
+		"gulp-sass": "^3.1.0",
+		"jquery": "^3.2.1",
+		"materialize-css": "^0.98.1"
+	}
 }
