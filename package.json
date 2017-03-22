@@ -9,6 +9,7 @@
 		"angular": "^1.6.3",
 		"bootstrap": "^3.3.7",
 		"browser-sync": "^2.18.8",
+		"del": "^2.2.2",
 		"gulp": "^3.9.1",
 		"gulp-inject": "^4.2.0",
 		"gulp-prompt": "^0.2.0",
