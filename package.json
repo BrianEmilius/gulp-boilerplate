@@ -6,7 +6,12 @@
   "repository": "http://github.com/BrianEmilius/gulp-boilerplate",
   "author": "Brian Emilius <be@rts.dk), Güner Yildirim <gy@rts.dk>",
   "license": "MIT",
+<<<<<<< Updated upstream
   "dependencies": {
     "gulp-inject": "^4.2.0"
+=======
+  "devDependencies": {
+    "browser-sync": "^2.18.8"
+>>>>>>> Stashed changes
   }
 }
