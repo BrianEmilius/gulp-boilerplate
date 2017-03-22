@@ -2,8 +2,13 @@ doctype html
 html(lang="en")
 	include partials/head.pug
 	body
-		nav.navbar
-			h1 Hello, World!
-			p I am a happy front page.
+		nav
+			.nav-wrapper
+				a.brand-logo(href="#") Hello, World!
+				ul#nav-mobile.right.hide-on-med-and-down
+					li
+						a(href="#") Link 1
+					li
+						a(href="#") Link 2
 		
 		include partials/footer.pug
