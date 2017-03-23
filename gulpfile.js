@@ -64,7 +64,7 @@ gulp.task('buildBootstrap', () => {
 
 // inject in pugs
 gulp.task('pugInject', () => {
-	var sources = gulp.src([path.distDir + 'assets/javascripts/*.js', path.distDir + 'assets/stylesheets/*.css'], {read: false});
+	var sources = gulp.src([path.distDir + 'assets/javascripts/*.js', '!' + path.distDir + 'assets/javascripts/jquery.min.js', path.distDir + 'assets/stylesheets/*.css'], {read: false});
 	return gulp.src(path.devDir + '**/*.pug')
 		.pipe(plumber({
 			errorHandler: notify.onError({
@@ -75,7 +75,13 @@ gulp.task('pugInject', () => {
 				icon: path.notifyIcon
 			})
 		}))
+		.pipe(inject(gulp.src(path.distDir + 'assets/javascripts/jquery.min.js', {read: false}), {
+			name: 'importantJS',
+			ignorePath: 'dist',
+			addRootSlash: false
+		}))
 		.pipe(inject(sources, {
+			ignorePath: 'dist',
 			addRootSlash: false
 		}))
 		.pipe(gulp.dest(path.devDir));
