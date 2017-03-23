@@ -11,6 +11,8 @@ const gulp = require('gulp'), // duh?
 			prompt       = require('gulp-prompt'),   // add interactions to gulp tasks
 			pug          = require('gulp-pug'),      // HTML templating
 			sass         = require('gulp-sass'),     // sass compiler
+			notify		 = require('gulp-notify'),
+			plumber		 = require('gulp-plumber'),
 
 // constants
 			path = {
@@ -23,7 +25,8 @@ const gulp = require('gulp'), // duh?
 				materializeFont : './node_modules/materialize-css/dist/fonts/**/*',              // materialize fonts path
 				bootstrapCSS    : './node_modules/bootstrap/dist/css/bootstrap.min.css',         // bootstrap css path
 				bootstrapJS     : './node_modules/bootstrap/dist/js/bootstrap.min.js',           // bootstrap js path
-				bootstrapFont   : './node_modules/bootstrap/dist/fonts/*'                        // bootstrap fonts path
+				bootstrapFont   : './node_modules/bootstrap/dist/fonts/*',                       // bootstrap fonts path,
+				notifyIcon		: ''															 // notify icon
 			};
 
 // error log in console
@@ -69,14 +72,22 @@ gulp.task('buildBootstrap', () => {
 gulp.task('buildPage', () => {
 	var sources = gulp.src([path.distDir + 'assets/javascripts/*.js', path.distDir + 'assets/stylesheets/*.css'], {read: false});
 	return gulp.src(path.devDir + '*.pug')
-		.on('error', errorLog)
+		.pipe(plumber({
+			errorHandler: notify.onError({
+				title: 'Pug Error',
+				subtitle: '<%= error.relativePath %>:<%= error.line %>',
+				open: 'file://<%= error.file %>',
+				onLast: true,
+				icon: path.notifyIcon
+			})
+		}))
 		.pipe(inject(sources, {
 			addRootSlash: false
 		}))
 		.pipe(pug({
 			pretty: true
 		}))
-		.pipe(gulp.dest(path.distDir));
+		.pipe(gulp.dest(path.distDir))
 }); // buildPage
 
 // serve dist with browser-sync
@@ -101,7 +112,15 @@ gulp.task('default', () => {
 	});
 
 	return gulp.src(path.devDir + 'assets/javascripts/test.js')
-		.on('error', errorLog)
+		.pipe(notify("Hello buddy"))
+		.on('error', notify.onError({
+			title: 'Default task Error',
+			subtitle: '<%= error.relativePath %>:<%= error.line %>',
+			message: '<%= error.messageOriginal %>',
+			open: 'file://<%= error.file %>',
+			onLast: true,
+			icon: path.notifyIcon
+		}))
 		.pipe(prompt.prompt([{
 			type:    'checkbox',
 			name:    'packages',
