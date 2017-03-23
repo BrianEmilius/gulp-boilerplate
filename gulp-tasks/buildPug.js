@@ -12,7 +12,7 @@ module.exports = (path) => {
 					subtitle: '<%= error.relativePath %>:<%= error.line %>',
 					open: 'file://<%= error.file %>',
 					onLast: true,
-					icon: ''
+					icon: path.notifyIcon
 				})
 			}))
 			.pipe(pug({

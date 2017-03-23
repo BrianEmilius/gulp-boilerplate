@@ -28,6 +28,9 @@ const gulp = require('gulp'), // duh?
 				bootstrapFont   : './node_modules/bootstrap/dist/fonts/*',                       // bootstrap fonts path,
 				notifyIcon		: ''															 // notify icon
 			};
+function getTask(task) {
+    return require('./gulp-tasks/' + task)(path);
+}
 
 // build materialize files
 gulp.task('buildMaterialize', () => {
@@ -52,47 +55,10 @@ gulp.task('buildBootstrap', () => {
 }); // buildBootstrap
 
 // inject in pugs
-gulp.task('pugInject', () => {
-	var sources = gulp.src([path.distDir + 'assets/javascripts/*.js', '!' + path.distDir + 'assets/javascripts/jquery.min.js', path.distDir + 'assets/stylesheets/*.css'], {read: false});
-	return gulp.src(path.devDir + '**/*.pug')
-		.pipe(plumber({
-			errorHandler: notify.onError({
-				title: 'Inject Error',
-				subtitle: '<%= error.relativePath %>:<%= error.line %>',
-				open: 'file://<%= error.file %>',
-				onLast: true,
-				icon: path.notifyIcon
-			})
-		}))
-		.pipe(inject(gulp.src(path.distDir + 'assets/javascripts/jquery.min.js', {read: false}), {
-			name: 'importantJS',
-			ignorePath: 'dist',
-			addRootSlash: false
-		}))
-		.pipe(inject(sources, {
-			ignorePath: 'dist',
-			addRootSlash: false
-		}))
-		.pipe(gulp.dest(path.devDir));
-});
+gulp.task('pugInject', getTask('pugInject'));
 
 // build basic template file
-gulp.task('buildPage', ['pugInject'], () => {
-	return gulp.src(path.devDir + '*.pug')
-		.pipe(plumber({
-			errorHandler: notify.onError({
-				title: 'Pug Error',
-				subtitle: '<%= error.relativePath %>:<%= error.line %>',
-				open: 'file://<%= error.file %>',
-				onLast: true,
-				icon: path.notifyIcon
-			})
-		}))
-		.pipe(pug({
-			pretty: true
-		}))
-		.pipe(gulp.dest(path.distDir))
-}); // buildPage
+gulp.task('buildPage', ['pugInject'], getTask('buildPug')); // buildPage
 
 // serve dist with browser-sync
 gulp.task('serve', () => {

@@ -4,6 +4,7 @@ let gulp 	= require('gulp'),
 	inject  = require('gulp-inject');
 	
 module.exports = (path) => {
+	let sources = gulp.src([path.distDir + 'assets/javascripts/*.js', '!' + path.distDir + 'assets/javascripts/jquery.min.js', path.distDir + 'assets/stylesheets/*.css'], {read: false});
 	return () => {
 		gulp.src(path.devDir + '**/*.pug')
 			.pipe(plumber({
@@ -15,7 +16,13 @@ module.exports = (path) => {
 					icon: path.notifyIcon
 				})
 			}))
+			.pipe(inject(gulp.src(path.distDir + 'assets/javascripts/jquery.min.js', {read: false}), {
+				name: 'importantJS',
+				ignorePath: 'dist',
+				addRootSlash: false
+			}))
 			.pipe(inject(sources, {
+				ignorePath: 'dist',
 				addRootSlash: false
 			}))
 			.pipe(gulp.dest(path.devDir));
