@@ -105,7 +105,7 @@ gulp.task('cleanup', () => {
 
 // default gulp task
 gulp.task('default', ['cleanup'], () => {
-
+	
 	return gulp.src(path.devDir + 'assets/javascripts/test.js')
 		.on('error', errorLog)
 		.pipe(prompt.prompt([{
