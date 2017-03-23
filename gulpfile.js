@@ -3,7 +3,7 @@ const gulp = require('gulp'), // duh?
 
 // include plugins
 			browserSync  = require('browser-sync'),  // synchronized browser testing
-			reload		 = browserSync.reload,		 // browser reload event
+			reload       = browserSync.reload,       // browser reload event
 			changed      = require('gulp-changed'),  // checks for changed files in destination directory
 			del          = require('del'),           // delete directories and folders
 			gulpSequence = require('gulp-sequence'), // run gulp tasks in sequence
@@ -44,6 +44,9 @@ gulp.task('buildMaterialize', () => {
 		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/fonts'));
 	gulp.src(path.angularJS)
+		.on('error', errorLog)
+		.pipe(gulp.dest(path.distDir + 'assets/javascripts'));
+	gulp.src(path.jqueryJS)
 		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/javascripts'));
 }); // buildMaterialize
