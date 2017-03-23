@@ -9,8 +9,9 @@ html(lang="en")
 					include partials/nav.pug
 				ul.side-nav#mobile-nav
 					include partials/nav.pug
-		a(data-activates="mobile-nav").btn-floating.btn-large.waves-effect.waves-light.red
-			i.material-icons menu
+		.fixed-action-btn.hide-on-med-and-up
+			a(data-activates="mobile-nav").btn-floating.btn-large.waves-effect.waves-light.red
+				i.material-icons menu
 		main.container
 			section
 				h1 Hello, World!
