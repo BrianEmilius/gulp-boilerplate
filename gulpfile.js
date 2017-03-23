@@ -29,22 +29,14 @@ const gulp = require('gulp'), // duh?
 				notifyIcon		: ''															 // notify icon
 			};
 
-// error log in console
-errorLog = (error) => {
-	console.error(err.message);
-}
-
 // build materialize files
 gulp.task('buildMaterialize', () => {
 	console.log('Building with Materialize...');
 	gulp.src(path.materializeCSS)
-		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/stylesheets'));
 	gulp.src([path.materializeJS, path.angularJS, path.jqueryJS])
-		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/javascripts'));
 	gulp.src(path.materializeFont)
-		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/fonts'));
 }); // buildMaterialize
 
@@ -52,13 +44,10 @@ gulp.task('buildMaterialize', () => {
 gulp.task('buildBootstrap', () => {
 	console.log('Building with Bootstrap...');
 	gulp.src(path.bootstrapCSS)
-		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/stylesheets'));
 	gulp.src([path.bootstrapJS, path.jqueryJS])
-		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/javascripts'));
 	gulp.src(path.bootstrapFont)
-		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/fonts'));
 }); // buildBootstrap
 
