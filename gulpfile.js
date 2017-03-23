@@ -3,6 +3,7 @@ const gulp = require('gulp'), // duh?
 
 // include plugins
 			browserSync  = require('browser-sync'),  // synchronized browser testing
+			reload		 = browserSync.reload,		 // browser reload event
 			changed      = require('gulp-changed'),  // checks for changed files in destination directory
 			del          = require('del'),           // delete directories and folders
 			gulpSequence = require('gulp-sequence'), // run gulp tasks in sequence
@@ -25,16 +26,25 @@ const gulp = require('gulp'), // duh?
 				bootstrapFont   : './node_modules/bootstrap/dist/fonts/*'                        // bootstrap fonts path
 			};
 
+// error log in console
+errorLog = (error) =>{
+	console.error(err.message);
+}
+
 // build materialize files
 gulp.task('buildMaterialize', () => {
 	console.log('Building with Materialize...');
 	gulp.src(path.materializeCSS)
+		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/stylesheets'));
 	gulp.src(path.materializeJS)
+		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/javascripts'));
 	gulp.src(path.materializeFont)
+		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/fonts'));
 	gulp.src(path.angularJS)
+		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/javascripts'));
 }); // buildMaterialize
 
@@ -42,12 +52,16 @@ gulp.task('buildMaterialize', () => {
 gulp.task('buildBootstrap', () => {
 	console.log('Building with Bootstrap...');
 	gulp.src(path.bootstrapCSS)
+		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/stylesheets'));
 	gulp.src(path.bootstrapJS)
+		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/javascripts'));
 	gulp.src(path.bootstrapFont)
+		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/fonts'));
 	gulp.src(path.jqueryJS)
+		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/javascripts'));
 }); // buildBootstrap
 
@@ -55,6 +69,7 @@ gulp.task('buildBootstrap', () => {
 gulp.task('buildPage', () => {
 	var sources = gulp.src([path.distDir + 'assets/javascripts/*.js', path.distDir + 'assets/stylesheets/*.css'], {read: false});
 	return gulp.src(path.devDir + '*.pug')
+		.on('error', errorLog)
 		.pipe(inject(sources, {
 			addRootSlash: false
 		}))
@@ -67,9 +82,13 @@ gulp.task('buildPage', () => {
 // serve dist with browser-sync
 gulp.task('serve', () => {
 	browserSync.init({
+        port: 8090,
 		server: {
 			baseDir: path.distDir
-		}
+		},
+        ui: {
+            port: 8080
+        }
 	});
 });
 
@@ -82,6 +101,7 @@ gulp.task('default', () => {
 	});
 
 	return gulp.src(path.devDir + 'assets/javascripts/test.js')
+		.on('error', errorLog)
 		.pipe(prompt.prompt([{
 			type:    'checkbox',
 			name:    'packages',
