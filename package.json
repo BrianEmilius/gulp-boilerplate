@@ -4,6 +4,14 @@
 	"description": "Super Awesome Gulp Boilerplate With Everything You Will Ever Need. Ever!",
 	"repository": "http://github.com/BrianEmilius/gulp-boilerplate",
 	"author": "Brian Emilius <be@rts.dk), Güner Yildirim <gy@rts.dk>",
+	"contributors": [{
+		"name": "Brian Emilius",
+		"email": "be@rts.dk"
+	},
+	{
+		"name": "Güner Yildirim",
+		"email": "gy@rts.dk"
+	}],
 	"license": "MIT",
 	"devDependencies": {
 		"angular": "^1.6.3",
