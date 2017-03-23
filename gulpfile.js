@@ -27,7 +27,7 @@ const gulp = require('gulp'), // duh?
 			};
 
 // error log in console
-errorLog = (error) =>{
+errorLog = (error) => {
 	console.error(err.message);
 }
 
@@ -105,7 +105,7 @@ gulp.task('cleanup', () => {
 
 // default gulp task
 gulp.task('default', ['cleanup'], () => {
-	
+
 	return gulp.src(path.devDir + 'assets/javascripts/test.js')
 		.on('error', errorLog)
 		.pipe(prompt.prompt([{
