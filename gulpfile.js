@@ -40,18 +40,12 @@ gulp.task('buildMaterialize', () => {
 	gulp.src(path.materializeCSS)
 		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/stylesheets'));
-	gulp.src(path.materializeJS)
+	gulp.src([path.materializeJS, path.angularJS, path.jqueryJS])
 		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/javascripts'));
 	gulp.src(path.materializeFont)
 		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/fonts'));
-	gulp.src(path.angularJS)
-		.on('error', errorLog)
-		.pipe(gulp.dest(path.distDir + 'assets/javascripts'));
-	gulp.src(path.jqueryJS)
-		.on('error', errorLog)
-		.pipe(gulp.dest(path.distDir + 'assets/javascripts'));
 }); // buildMaterialize
 
 // build bootstrap files
@@ -60,15 +54,12 @@ gulp.task('buildBootstrap', () => {
 	gulp.src(path.bootstrapCSS)
 		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/stylesheets'));
-	gulp.src(path.bootstrapJS)
+	gulp.src([path.bootstrapJS, path.jqueryJS])
 		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/javascripts'));
 	gulp.src(path.bootstrapFont)
 		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/fonts'));
-	gulp.src(path.jqueryJS)
-		.on('error', errorLog)
-		.pipe(gulp.dest(path.distDir + 'assets/javascripts'));
 }); // buildBootstrap
 
 // build basic template file
