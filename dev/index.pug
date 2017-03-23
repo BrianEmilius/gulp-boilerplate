@@ -2,8 +2,8 @@ doctype html
 html(lang="en")
 	include partials/head.pug
 	body
-		nav
-			.nav-wrapper
+		nav.teal
+			.container.nav-wrapper
 				a.brand-logo(href="#") Hello, World!
 				ul#nav-mobile.right.hide-on-med-and-down
 					li
@@ -12,8 +12,12 @@ html(lang="en")
 						a(href="#") Link 2
 					li
 						a(href="#") Link 3
-		
-		footer
-			section
-				p &copy; 2017
+		main.container
+			h1 Hello, World!
+		footer.page-footer.teal
+			section.container
+				h1.white-text This is a footer
+			section.footer-copyright
+				.container
+					p &copy; 2017
 		include partials/footer.pug
