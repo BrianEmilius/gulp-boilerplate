@@ -1,9 +1,21 @@
-head
-	meta(charset="UTF-8")
-	meta(name="viewport", content="width=device-width, initial-scale=1.0")
-	meta(http-equiv="X-UA-Compatible", content="ie=edge")
-	meta(name="description" content="")
-	title Hello, World!
-	//- inject:css
-	link(rel="stylesheet", href="assets/stylesheets/materialize.min.css")
-	//- endinject
+doctype html
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(http-equiv="X-UA-Compatible", content="ie=edge")
+		meta(name="description" content="")
+		title Hello, World!
+		//- inject:css
+		//- endinject
+	body
+		nav.teal
+			.container.nav-wrapper
+				a(href="#").brand-logo Hello, World!
+				ul#nav-mobile.right.hide-on-med-and-down
+					include partials/nav.pug
+				ul.side-nav#mobile-nav
+					include partials/nav.pug
+		.fixed-action-btn.hide-on-med-and-up
+			a(data-activates="mobile-nav").btn-floating.btn-large.waves-effect.waves-light.red
+				i.material-icons menu
