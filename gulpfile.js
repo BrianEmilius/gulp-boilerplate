@@ -1,19 +1,5 @@
 // include gulp
 const gulp = require('gulp'), // duh?
-
-// include plugins
-			browserSync  = require('browser-sync'),  // synchronized browser testing
-			reload       = browserSync.reload,       // browser reload event
-			changed      = require('gulp-changed'),  // checks for changed files in destination directory
-			del          = require('del'),           // delete directories and folders
-			gulpSequence = require('gulp-sequence'), // run gulp tasks in sequence
-			inject       = require('gulp-inject'),   // inject scripts and css in HTML documents
-			prompt       = require('gulp-prompt'),   // add interactions to gulp tasks
-			pug          = require('gulp-pug'),      // HTML templating
-			sass         = require('gulp-sass'),     // sass compiler
-			notify		 = require('gulp-notify'),
-			plumber		 = require('gulp-plumber'),
-
 // constants
 			path = {
 				devDir          : './dev/',                                                      // development directory path
@@ -28,31 +14,16 @@ const gulp = require('gulp'), // duh?
 				bootstrapFont   : './node_modules/bootstrap/dist/fonts/*',                       // bootstrap fonts path,
 				notifyIcon		: ''															 // notify icon
 			};
-function getTask(task) {
-    return require('./gulp-tasks/' + task)(path);
+			
+function getTask(task, options) {
+    return require('./gulp-tasks/' + task)(path, options);
 }
 
 // build materialize files
-gulp.task('buildMaterialize', () => {
-	console.log('Building with Materialize...');
-	gulp.src(path.materializeCSS)
-		.pipe(gulp.dest(path.distDir + 'assets/stylesheets'));
-	gulp.src([path.materializeJS, path.angularJS, path.jqueryJS])
-		.pipe(gulp.dest(path.distDir + 'assets/javascripts'));
-	gulp.src(path.materializeFont)
-		.pipe(gulp.dest(path.distDir + 'assets/fonts'));
-}); // buildMaterialize
+gulp.task('buildMaterialize', getTask('installer', {package: 'materialize'})); // buildMaterialize
 
 // build bootstrap files
-gulp.task('buildBootstrap', () => {
-	console.log('Building with Bootstrap...');
-	gulp.src(path.bootstrapCSS)
-		.pipe(gulp.dest(path.distDir + 'assets/stylesheets'));
-	gulp.src([path.bootstrapJS, path.jqueryJS])
-		.pipe(gulp.dest(path.distDir + 'assets/javascripts'));
-	gulp.src(path.bootstrapFont)
-		.pipe(gulp.dest(path.distDir + 'assets/fonts'));
-}); // buildBootstrap
+gulp.task('buildBootstrap', getTask('installer', { package : 'bootstrap'})); // buildBootstrap
 
 // inject in pugs
 gulp.task('pugInject', getTask('pugInject'));
@@ -61,57 +32,10 @@ gulp.task('pugInject', getTask('pugInject'));
 gulp.task('buildPage', ['pugInject'], getTask('buildPug')); // buildPage
 
 // serve dist with browser-sync
-gulp.task('serve', () => {
-	browserSync.init({
-		port: 8090,
-		server: {
-			baseDir: path.distDir
-		},
-				ui: {
-					port: 8080
-				}
-	});
-});
+gulp.task('serve', getTask('browserSync'));
 
 // clean up distribution directory
-gulp.task('cleanup', () => {
-	console.log('Cleaning old files...');
-	return del([path.distDir]).then(paths => {
-		console.log('Deleted files and folders:\n', paths.join('\n'));
-	});
-});
+gulp.task('cleanup', getTask('cleanup'));
 
 // default gulp task
-gulp.task('default', ['cleanup'], () => {
-
-	return gulp.src(path.devDir + 'assets/javascripts/test.js')
-		.pipe(notify("Hello buddy"))
-		.on('error', notify.onError({
-			title: 'Default task Error',
-			subtitle: '<%= error.relativePath %>:<%= error.line %>',
-			message: '<%= error.messageOriginal %>',
-			open: 'file://<%= error.file %>',
-			onLast: true,
-			icon: path.notifyIcon
-		}))
-		.pipe(prompt.prompt([{
-			type:    'checkbox',
-			name:    'packages',
-			message: 'Which packages would you like to build with?',
-			choices: ['Materialize/Angular', 'Bootstrap/jQuery'],
-			validate: (packages) => {
-				if (typeof packages[0] == 'undefined' && packages[0] == null) {
-					return false;
-				}
-				return true;
-			}
-		}], (res) => {
-			if (res.packages.indexOf('Materialize/Angular') > -1) {
-				gulpSequence('buildMaterialize')();
-			}
-			if (res.packages.indexOf('Bootstrap/jQuery') > -1) {
-				gulpSequence('buildBootstrap')();
-			}
-		}));
-	
-});
+gulp.task('default', ['cleanup'], getTask('init'));
