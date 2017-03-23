@@ -4,14 +4,13 @@ html(lang="en")
 	body
 		nav.teal
 			.container.nav-wrapper
-				a.brand-logo(href="#") Hello, World!
+				a(href="#").brand-logo Hello, World!
 				ul#nav-mobile.right.hide-on-med-and-down
-					li
-						a(href="#") Link 1
-					li
-						a(href="#") Link 2
-					li
-						a(href="#") Link 3
+					include partials/nav.pug
+				ul.side-nav#mobile-nav
+					include partials/nav.pug
+		a(data-activates="mobile-nav").btn-floating.btn-large.waves-effect.waves-light.red
+			i.material-icons menu
 		main.container
 			section
 				h1 Hello, World!
@@ -21,10 +20,4 @@ html(lang="en")
 				p Doloribus eum tempore, molestiae veniam quos voluptatum. Voluptatem quo, totam animi nesciunt eligendi autem? Placeat earum deleniti eos excepturi sequi error culpa voluptatem officia commodi, quo ab totam, quas dolores.
 				p Ea cumque magni labore, nemo non perspiciatis, voluptas eius quibusdam reprehenderit necessitatibus! Provident possimus deleniti, quis fugiat inventore velit reiciendis deserunt tenetur dolorum earum voluptatum? Voluptatem, sapiente deserunt. Obcaecati, quam.
 				p Cumque eius recusandae animi, quis eaque perspiciatis dolor accusantium qui, libero accusamus eligendi fugit nobis quidem deleniti tempore. Accusantium est commodi iste deleniti asperiores, error dolores vel hic nostrum amet?
-		footer.page-footer.teal
-			section.container
-				h5.white-text This is a footer
-			section.footer-copyright
-				.container
-					p &copy; 2017
 		include partials/footer.pug
