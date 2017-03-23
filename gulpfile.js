@@ -85,13 +85,13 @@ gulp.task('buildPage', () => {
 // serve dist with browser-sync
 gulp.task('serve', () => {
 	browserSync.init({
-        port: 8090,
+		port: 8090,
 		server: {
 			baseDir: path.distDir
 		},
-        ui: {
-            port: 8080
-        }
+				ui: {
+					port: 8080
+				}
 	});
 });
 
