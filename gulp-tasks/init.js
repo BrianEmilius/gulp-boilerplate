@@ -6,7 +6,6 @@ let gulp 	     = require('gulp'),
 module.exports = (path, options) => {
 	return () => {
 		gulp.src(path.devDir + 'assets/javascripts/test.js')
-		.pipe(notify("Hello buddy"))
 		.on('error', notify.onError({
 			title: 'Default task Error',
 			subtitle: '<%= error.relativePath %>:<%= error.line %>',
