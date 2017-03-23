@@ -16,7 +16,7 @@ const gulp = require('gulp'), // duh?
 			};
 			
 function getTask(task, options) {
-    return require('./gulp-tasks/' + task)(path, options);
+	return require('./gulp-tasks/' + task)(path, options);
 }
 
 // build materialize files
