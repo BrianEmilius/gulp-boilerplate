@@ -3,7 +3,7 @@ const gulp = require('gulp'), // duh?
 
 // include plugins
 			browserSync  = require('browser-sync'),  // synchronized browser testing
-			reload		 = browserSync.reload,		 // browser reload event
+			reload       = browserSync.reload,       // browser reload event
 			changed      = require('gulp-changed'),  // checks for changed files in destination directory
 			del          = require('del'),           // delete directories and folders
 			gulpSequence = require('gulp-sequence'), // run gulp tasks in sequence
@@ -30,7 +30,7 @@ const gulp = require('gulp'), // duh?
 			};
 
 // error log in console
-errorLog = (error) =>{
+errorLog = (error) => {
 	console.error(err.message);
 }
 
@@ -47,6 +47,9 @@ gulp.task('buildMaterialize', () => {
 		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/fonts'));
 	gulp.src(path.angularJS)
+		.on('error', errorLog)
+		.pipe(gulp.dest(path.distDir + 'assets/javascripts'));
+	gulp.src(path.jqueryJS)
 		.on('error', errorLog)
 		.pipe(gulp.dest(path.distDir + 'assets/javascripts'));
 }); // buildMaterialize
@@ -93,23 +96,26 @@ gulp.task('buildPage', () => {
 // serve dist with browser-sync
 gulp.task('serve', () => {
 	browserSync.init({
-        port: 8090,
+		port: 8090,
 		server: {
 			baseDir: path.distDir
 		},
-        ui: {
-            port: 8080
-        }
+				ui: {
+					port: 8080
+				}
+	});
+});
+
+// clean up distribution directory
+gulp.task('cleanup', () => {
+	console.log('Cleaning old files...');
+	return del([path.distDir]).then(paths => {
+		console.log('Deleted files and folders:\n', paths.join('\n'));
 	});
 });
 
 // default gulp task
-gulp.task('default', () => {
-	
-	console.log('Cleaning old files...');
-	del([path.distDir]).then(paths => {
-		console.log('Deleted files and folders:\n', paths.join('\n'));
-	});
+gulp.task('default', ['cleanup'], () => {
 
 	return gulp.src(path.devDir + 'assets/javascripts/test.js')
 		.pipe(notify("Hello buddy"))
