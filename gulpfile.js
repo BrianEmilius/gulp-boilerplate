@@ -95,13 +95,16 @@ gulp.task('serve', () => {
 	});
 });
 
-// default gulp task
-gulp.task('default', () => {
-	
+// clean up distribution directory
+gulp.task('cleanup', () => {
 	console.log('Cleaning old files...');
-	del([path.distDir]).then(paths => {
+	return del([path.distDir]).then(paths => {
 		console.log('Deleted files and folders:\n', paths.join('\n'));
 	});
+});
+
+// default gulp task
+gulp.task('default', ['cleanup'], () => {
 
 	return gulp.src(path.devDir + 'assets/javascripts/test.js')
 		.on('error', errorLog)
