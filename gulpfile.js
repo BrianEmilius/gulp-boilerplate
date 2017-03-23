@@ -62,9 +62,27 @@ gulp.task('buildBootstrap', () => {
 		.pipe(gulp.dest(path.distDir + 'assets/fonts'));
 }); // buildBootstrap
 
-// build basic template file
-gulp.task('buildPage', () => {
+// inject in pugs
+gulp.task('pugInject', () => {
 	var sources = gulp.src([path.distDir + 'assets/javascripts/*.js', path.distDir + 'assets/stylesheets/*.css'], {read: false});
+	return gulp.src(path.devDir + '**/*.pug')
+		.pipe(plumber({
+			errorHandler: notify.onError({
+				title: 'Inject Error',
+				subtitle: '<%= error.relativePath %>:<%= error.line %>',
+				open: 'file://<%= error.file %>',
+				onLast: true,
+				icon: path.notifyIcon
+			})
+		}))
+		.pipe(inject(sources, {
+			addRootSlash: false
+		}))
+		.pipe(gulp.dest(path.devDir));
+});
+
+// build basic template file
+gulp.task('buildPage', ['pugInject'], () => {
 	return gulp.src(path.devDir + '*.pug')
 		.pipe(plumber({
 			errorHandler: notify.onError({
@@ -74,9 +92,6 @@ gulp.task('buildPage', () => {
 				onLast: true,
 				icon: path.notifyIcon
 			})
-		}))
-		.pipe(inject(sources, {
-			addRootSlash: false
 		}))
 		.pipe(pug({
 			pretty: true
