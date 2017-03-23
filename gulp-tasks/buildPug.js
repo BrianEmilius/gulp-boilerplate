@@ -1,7 +1,9 @@
-let gulp 	= require('gulp'),
-	plumber = require('gulp-plumber'),
-	notify  = require('gulp-notify'),
-	pug     = require('gulp-pug');
+let gulp 	    = require('gulp'),
+	plumber     = require('gulp-plumber'),
+	notify      = require('gulp-notify'),
+	pug         = require('gulp-pug'),
+	browserSync = require('browser-sync'),
+	reload      = browserSync.reload;
 	
 module.exports = (path) => {
 	return () => {
@@ -19,5 +21,6 @@ module.exports = (path) => {
 				pretty: true
 			}))
 			.pipe(gulp.dest(path.distDir))
+			.pipe(reload({stream: true}));
 	};
 }

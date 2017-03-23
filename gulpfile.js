@@ -37,5 +37,9 @@ gulp.task('serve', getTask('browserSync'));
 // clean up distribution directory
 gulp.task('cleanup', getTask('cleanup'));
 
+gulp.task('watch', () => {
+	gulp.watch(path.devDir + '**/*.pug', ['buildPage']);
+});
+
 // default gulp task
 gulp.task('default', ['cleanup'], getTask('init'));
