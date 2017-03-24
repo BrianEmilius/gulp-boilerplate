@@ -12,6 +12,14 @@
 		"name": "Güner Yildirim",
 		"email": "gy@rts.dk"
 	}],
+	"scripts": {
+		"start": "gulp",
+		"build:pug": "gulp buildPage",
+		"build": "npm-run-all --parallel build:pug",
+		"serve": "gulp serve",
+		"watch": "gulp watch",
+		"dev": "gulp buildPage watch serve"
+	},
 	"license": "MIT",
 	"devDependencies": {
 		"angular": "^1.6.3",
