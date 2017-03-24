@@ -12,9 +12,9 @@ const gulp = require('gulp'), // duh?
 				bootstrapCSS    : './node_modules/bootstrap/dist/css/bootstrap.min.css',         // bootstrap css path
 				bootstrapJS     : './node_modules/bootstrap/dist/js/bootstrap.min.js',           // bootstrap js path
 				bootstrapFont   : './node_modules/bootstrap/dist/fonts/*',                       // bootstrap fonts path,
-				notifyIcon		: ''															 // notify icon
+				notifyIcon      : ''                                                             // notify icon
 			};
-			
+
 function getTask(task, options) {
 	return require('./gulp-tasks/' + task)(path, options);
 }
