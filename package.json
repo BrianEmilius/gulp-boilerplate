@@ -4,14 +4,16 @@
 	"description": "Super Awesome Gulp Boilerplate With Everything You Will Ever Need. Ever!",
 	"repository": "http://github.com/BrianEmilius/gulp-boilerplate",
 	"author": "Brian Emilius <be@rts.dk), Güner Yildirim <gy@rts.dk>",
-	"contributors": [{
-		"name": "Brian Emilius",
-		"email": "be@rts.dk"
-	},
-	{
-		"name": "Güner Yildirim",
-		"email": "gy@rts.dk"
-	}],
+	"contributors": [
+		{
+			"name": "Brian Emilius",
+			"email": "be@rts.dk"
+		},
+		{
+			"name": "Güner Yildirim",
+			"email": "gy@rts.dk"
+		}
+	],
 	"scripts": {
 		"start": "gulp",
 		"build:pug": "gulp buildPage",
@@ -37,6 +39,7 @@
 		"gulp-sequence": "^0.4.6",
 		"jquery": "^3.2.1",
 		"materialize-css": "^0.98.1",
-		"notify-send": "^0.1.2"
+		"notify-send": "^0.1.2",
+		"npm-run-all": "^4.0.2"
 	}
 }

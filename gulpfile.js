@@ -15,7 +15,7 @@ const gulp = require('gulp'), // duh?
 				notifyIcon      : ''                                                             // notify icon
 			};
 
-function getTask(task, options) {
+getTask = (task, options) => {
 	return require('./gulp-tasks/' + task)(path, options);
 }
 
@@ -29,7 +29,7 @@ gulp.task('buildBootstrap', getTask('installer', { package : 'bootstrap'})); // 
 gulp.task('pugInject', getTask('pugInject'));
 
 // build basic template file
-gulp.task('buildPage', ['pugInject'], getTask('buildPug')); // buildPage
+gulp.task('buildPage', ['pugInject'], getTask('buildPug'));
 
 // serve dist with browser-sync
 gulp.task('serve', getTask('browserSync'));
@@ -38,7 +38,7 @@ gulp.task('serve', getTask('browserSync'));
 gulp.task('cleanup', getTask('cleanup'));
 
 gulp.task('watch', () => {
-	gulp.watch(path.devDir + '**/*.pug', ['buildPage']);
+	gulp.watch([path.devDir + '**/*.pug', path.devDir + '**/*.sass'], ['buildPage']);
 });
 
 // default gulp task
