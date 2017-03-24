@@ -1,7 +1,7 @@
-let gulp 	     = require('gulp'),
-	notify       = require('gulp-notify'),
-	gulpSequence = require('gulp-sequence'),
-	prompt       = require('gulp-prompt');
+const 	gulp 	     = require('gulp'),
+		notify       = require('gulp-notify'),
+		gulpSequence = require('gulp-sequence'),
+		prompt       = require('gulp-prompt');
 	
 module.exports = (path, options) => {
 	return () => {

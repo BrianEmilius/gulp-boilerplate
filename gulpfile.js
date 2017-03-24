@@ -14,8 +14,7 @@ const gulp = require('gulp'), // duh?
 				bootstrapFont   : './node_modules/bootstrap/dist/fonts/*',                       // bootstrap fonts path,
 				notifyIcon      : ''                                                             // notify icon
 			};
-
-function getTask(task, options) {
+getTask = (task, options) => {
 	return require('./gulp-tasks/' + task)(path, options);
 }
 
