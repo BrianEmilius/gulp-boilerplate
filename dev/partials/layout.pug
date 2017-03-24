@@ -1,11 +1,12 @@
 doctype html
 html(lang="en")
 	head
-		meta(charset="UTF-8")
+		meta(charset="utf-8")
+		meta(http-equiv="X-UA-Compatible", content="IE=edge")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
-		meta(http-equiv="X-UA-Compatible", content="ie=edge")
-		meta(name="description" content="")
+
 		title Hello, World!
+
 		//- inject:css
 		//- endinject
 	body
@@ -13,9 +14,23 @@ html(lang="en")
 			.container.nav-wrapper
 				a(href="#").brand-logo Hello, World!
 				ul#nav-mobile.right.hide-on-med-and-down
-					include nav.pug
+					include primaryNavigation.pug
 				ul.side-nav#mobile-nav
-					include nav.pug
+					include primaryNavigation.pug
 		.fixed-action-btn.hide-on-med-and-up
 			a(data-activates="mobile-nav").btn-floating.btn-large.waves-effect.waves-light.red
 				i.material-icons menu
+
+		block content
+
+		footer.page-footer.teal
+			section.container
+				h5.white-text This is a footer
+			section.footer-copyright
+				.container
+					p &copy; 2017
+
+		//- importantJS:js
+		//- endinject
+		//- inject:js
+		//- endinject
