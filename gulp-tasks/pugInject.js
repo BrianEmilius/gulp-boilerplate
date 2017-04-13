@@ -1,7 +1,7 @@
-let gulp 	= require('gulp'),
-	plumber = require('gulp-plumber'),
-	notify  = require('gulp-notify'),
-	inject  = require('gulp-inject');
+const 	gulp 	= require('gulp'),
+		plumber = require('gulp-plumber'),
+		notify  = require('gulp-notify'),
+		inject  = require('gulp-inject');
 	
 module.exports = (path) => {
 	let sources = gulp.src([path.distDir + 'assets/javascripts/*.js', '!' + path.distDir + 'assets/javascripts/jquery.min.js', path.distDir + 'assets/stylesheets/*.css'], {read: false});

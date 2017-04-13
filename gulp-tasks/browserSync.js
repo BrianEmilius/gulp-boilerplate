@@ -1,5 +1,5 @@
-let gulp 		= require('gulp'),
-	browserSync = require('browser-sync');
+const 	gulp 		= require('gulp'),
+		browserSync = require('browser-sync');
 	
 module.exports = (path) => {
 	return () => {

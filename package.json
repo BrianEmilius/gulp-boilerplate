@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
 	"name": "gulp-boilerplate",
 	"version": "0.0.0",
@@ -43,3 +44,50 @@
 		"npm-run-all": "^4.0.2"
 	}
 }
+=======
+{
+	"name": "gulp-boilerplate",
+	"version": "0.0.0",
+	"description": "Super Awesome Gulp Boilerplate With Everything You Will Ever Need. Ever!",
+	"repository": "http://github.com/BrianEmilius/gulp-boilerplate",
+	"author": "Brian Emilius <be@rts.dk), Güner Yildirim <gy@rts.dk>",
+	"contributors": [
+		{
+			"name": "Brian Emilius",
+			"email": "be@rts.dk"
+		},
+		{
+			"name": "Güner Yildirim",
+			"email": "gy@rts.dk"
+		}
+	],
+	"scripts": {
+		"start": "gulp",
+		"build:pug": "gulp buildPage",
+		"build": "npm-run-all --parallel build:pug",
+		"serve": "gulp serve",
+		"watch": "gulp watch",
+		"dev": "gulp buildPage watch serve"
+	},
+	"license": "MIT",
+	"devDependencies": {
+		"angular": "^1.6.3",
+		"bootstrap": "^3.3.7",
+		"browser-sync": "^2.18.8",
+		"del": "^2.2.2",
+		"gulp": "^3.9.1",
+		"gulp-changed": "^2.0.0",
+		"gulp-inject": "^4.2.0",
+		"gulp-notify": "^3.0.0",
+		"gulp-plumber": "^1.1.0",
+		"gulp-prompt": "^0.2.0",
+		"gulp-pug": "^3.3.0",
+		"gulp-sass": "^3.1.0",
+		"gulp-sequence": "^0.4.6",
+		"jquery": "^3.2.1",
+		"materialize-css": "^0.98.1",
+		"notify-send": "^0.1.2",
+		"npm-run-all": "^4.0.2"
+	}
+}
+>>>>>>> 34ccb7e11109a41194cc8d3b27be1f9ad67af891

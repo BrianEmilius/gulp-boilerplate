@@ -1,12 +1,13 @@
-let gulp 	    = require('gulp'),
-	plumber     = require('gulp-plumber'),
-	notify      = require('gulp-notify'),
-	pug         = require('gulp-pug'),
-	browserSync = require('browser-sync'),
-	reload      = browserSync.reload;
+const 	gulp 	    = require('gulp'),
+		plumber     = require('gulp-plumber'),
+		notify      = require('gulp-notify'),
+		pug         = require('gulp-pug'),
+		browserSync = require('browser-sync'),
+		reload      = browserSync.reload;
 	
 module.exports = (path) => {
 	return () => {
+		console.log('start');
 		gulp.src(path.devDir + '*.pug')
 			.pipe(plumber({
 				errorHandler: notify.onError({
@@ -22,5 +23,6 @@ module.exports = (path) => {
 			}))
 			.pipe(gulp.dest(path.distDir))
 			.pipe(reload({stream: true}));
+		console.log('end');
 	};
 }
